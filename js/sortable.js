@@ -21,11 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return txt.toLowerCase();
   };
 
+  // accessibility and neutral state
+  heads.forEach(h => {
+    h.setAttribute("aria-sort", "none");
+    h.tabIndex = 0;
+    h.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); h.click(); }
+    });
+  });
+
   heads.forEach((th, idx) => {
     th.addEventListener("click", () => {
       const order = th.classList.contains("asc") ? "desc" : "asc";
-      heads.forEach(h => h.classList.remove("asc", "desc"));
+
+      heads.forEach(h => {
+        h.classList.remove("asc", "desc");
+        h.setAttribute("aria-sort", "none");
+      });
       th.classList.add(order);
+      th.setAttribute("aria-sort", order === "asc" ? "ascending" : "descending");
 
       const type = th.dataset.type || "text";
       const rows = Array.from(tbody.rows);

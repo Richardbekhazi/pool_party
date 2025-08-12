@@ -114,3 +114,50 @@ th.sortable::after{
 }
 th.sortable.asc::after{ border-bottom-color:#cbd5e1; margin-top:-6px; }
 th.sortable.desc::after{ border-top-color:#cbd5e1; margin-top:6px; }
+
+
+/* sortable headers with arrows */
+th.sortable{
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 28px; /* space for arrow */
+}
+
+th.sortable::after{
+  content: "↕";                  /* neutral arrow shows it is sortable */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #cbd5e1;
+  opacity: .35;
+  transition: transform .15s ease, opacity .15s ease, color .15s ease;
+}
+
+th.sortable.asc::after,
+th.sortable[aria-sort="ascending"]::after{
+  content: "↑";
+  color: var(--accent);
+  opacity: .9;
+}
+
+th.sortable.desc::after,
+th.sortable[aria-sort="descending"]::after{
+  content: "↓";
+  color: var(--accent);
+  opacity: .9;
+}
+
+
+/* chips */
+.badge{ display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid var(--border); font-size:.9em; }
+.badge.ok{ color:#93c5fd; background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.35); }
+.badge.meal{ color:#a7f3d0; background:rgba(16,185,129,.08); border-color:rgba(16,185,129,.35); }
+.badge.pending{ color:#fde68a; background:rgba(217,119,6,.12); border-color:rgba(217,119,6,.35); }
+.badge.host{ color:#fcd34d; background:rgba(250,204,21,.10); border-color:rgba(250,204,21,.35); }
+
+/* highlight pending rows */
+tbody tr.pending{ background-color:#3a2f13; }
+tbody tr.pending:hover{ background-color:#42361a; }
