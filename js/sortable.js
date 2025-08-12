@@ -34,6 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
     th.addEventListener("click", () => {
       const order = th.classList.contains("asc") ? "desc" : "asc";
 
+      // accessibility + tooltip + keyboard
+        heads.forEach(h => {
+        const label = h.textContent.trim();
+        h.setAttribute("title", `Click to sort by ${label}`);
+        h.setAttribute("role", "button");
+        h.setAttribute("aria-sort", "none");
+        h.tabIndex = 0;
+        h.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); h.click(); }
+        });
+        });
+
       heads.forEach(h => {
         h.classList.remove("asc", "desc");
         h.setAttribute("aria-sort", "none");

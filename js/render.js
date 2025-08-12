@@ -1,6 +1,7 @@
 async function renderTable() {
   const table = document.getElementById("contacts-table");
   const tbody = table.querySelector("tbody");
+
   const res = await fetch("data/attendees.json");
   const data = await res.json();
 
