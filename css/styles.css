@@ -104,3 +104,13 @@ tbody tr.pending{
 tbody tr.pending:hover{
   background-color:#42361a;
 }
+
+
+/* sortable headers */
+th.sortable{ cursor:pointer; user-select:none; position:relative; }
+th.sortable::after{
+  content:""; position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  border:5px solid transparent; opacity:.5;
+}
+th.sortable.asc::after{ border-bottom-color:#cbd5e1; margin-top:-6px; }
+th.sortable.desc::after{ border-top-color:#cbd5e1; margin-top:6px; }
