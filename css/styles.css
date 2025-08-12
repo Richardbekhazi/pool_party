@@ -63,3 +63,44 @@ footer{padding:10px 22px 18px; color:var(--muted); font-size:12px;}
   header{padding:18px;}
   td, thead th{padding:12px 14px;}
 }
+
+/* New columns */
+.fee { font-variant-numeric: tabular-nums; }
+.meal {}
+
+/* Chips */
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  font-size:.9em;
+}
+.badge.ok{
+  color:#93c5fd;
+  background:rgba(59,130,246,.08);
+  border-color:rgba(59,130,246,.35);
+}
+.badge.meal{
+  color:#a7f3d0;
+  background:rgba(16,185,129,.08);
+  border-color:rgba(16,185,129,.35);
+}
+.badge.pending{
+  color:#fde68a;
+  background:rgba(217,119,6,.12);
+  border-color:rgba(217,119,6,.35);
+}
+.badge.host{
+  color:#fcd34d;
+  background:rgba(250,204,21,.10);
+  border-color:rgba(250,204,21,.35);
+}
+
+/* Row highlight for pending */
+tbody tr.pending{
+  background-color:#3a2f13;
+}
+tbody tr.pending:hover{
+  background-color:#42361a;
+}
