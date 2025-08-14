@@ -146,3 +146,34 @@ footer{padding:10px 22px 18px; color:var(--muted); font-size:12px;}
   background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12);
   color:#e5e7eb; font-size:14px;
 }
+
+/* Reuse your .btn; highlight current page */
+.btn-current{
+  color: var(--accent);
+  border-color: rgba(34,211,238,.45);
+  box-shadow: 0 0 0 2px rgba(34,211,238,.15) inset;
+}
+
+/* Mobile: center the nav at the top */
+@media (max-width: 520px){
+  .floating-nav{ left:50%; right:auto; transform:translateX(-50%); }
+}
+
+/* reuse your .btn style; highlight current */
+.btn{
+  display:inline-block; padding:8px 14px; border-radius:10px;
+  border:1px solid var(--border); color:var(--text); text-decoration:none;
+  transition:.18s ease; font-weight:600; background:#0f172a;
+}
+.btn:hover{ transform:translateY(-1px); border-color:rgba(34,211,238,.35); color:var(--accent); }
+.btn-current{
+  color:var(--accent);
+  border-color:rgba(34,211,238,.45);
+  box-shadow:0 0 0 2px rgba(34,211,238,.12) inset;
+}
+
+/* small screens: keep it tidy */
+@media (max-width:640px){
+  .header-nav{ padding:4px; }
+  .btn{ padding:6px 10px; }
+}
