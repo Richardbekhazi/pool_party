@@ -3,38 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="assets/favicon-pp.ico" sizes="any">
-  <title>Contacts</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Pool Party</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/sortable.js" defer></script>
-  <script src="js/render.js" defer></script>
+  <script src="js/random_hero.js" defer></script>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <header>
-        <h1>Contacts</h1>
-        <div class="hint">Tap a header to sort</div>
+      <header class="landing-header">
+        <h1>Pool Party</h1>
+        <div class="landing-actions">
+          <a class="btn" href="money.html">Money</a>
+          <a class="btn btn-accent" href="pictures.html">Pictures</a>
+        </div>
       </header>
 
-      <div class="table-wrap">
-        <table aria-label="Contacts list" id="contacts-table">
-          <thead>
-            <tr>
-              <th class="idx sortable" data-type="number">#</th>
-              <th class="sortable" data-type="text">Name</th>
-              <th class="sortable" data-type="money">Fee</th>
-              <th class="sortable" data-type="text">Meal</th>
-              <th class="sortable" data-type="phone">Phone</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+      <figure id="hero" class="hero" aria-label="Random party photo">
+        <img id="heroImg" alt="Pool party photo" />
+        <figcaption id="heroCaption" class="hero-caption"></figcaption>
+      </figure>
 
-      <footer>JSON powered. Easy to update.</footer>
+      <footer>One random memory on every visit ✨</footer>
     </div>
   </div>
 </body>

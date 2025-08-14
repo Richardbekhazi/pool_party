@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pool Party • Money</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/render_attendees.js" defer></script>
+  <script src="js/sortable.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header class="page-header">
+        <h1>Money</h1>
+        <a class="btn" href="index.html">← Home</a>
+      </header>
+
+      <div class="hint">Tap a header to sort</div>
+      <div class="table-wrap">
+        <table aria-label="Contacts list" id="contacts-table">
+          <thead>
+            <tr>
+              <th class="idx sortable" data-type="number">#</th>
+              <th class="sortable" data-type="text">Name</th>
+              <th class="sortable" data-type="money">Fee</th>
+              <th class="sortable" data-type="text">Meal</th>
+              <th class="sortable" data-type="phone">Phone</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <footer>Site by Richard. Media on Google. Code on GitHub.</footer>
+    </div>
+  </div>
+</body>
+</html>

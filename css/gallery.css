@@ -1,0 +1,98 @@
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:14px;
+  padding:16px 18px 22px;
+}
+
+.card-item{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  cursor:pointer;
+}
+.card-item:hover{ transform:translateY(-2px); border-color:rgba(34,211,238,.35); box-shadow:0 10px 20px rgba(0,0,0,.25); }
+
+.card-thumb{
+  width:100%;
+  aspect-ratio: 4 / 3;
+  object-fit:cover;
+  display:block;
+}
+
+.card-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 12px;
+  color:var(--text);
+  font-size:14px;
+}
+.badge.view{ color:#a7f3d0; background:rgba(16,185,129,.12); border-color:rgba(16,185,129,.35); }
+
+/* lightbox */
+#lightbox{
+  width:min(96vw, 1100px);
+  max-height:90vh;
+  border:none;
+  padding:0;
+  background:transparent;
+}
+#lightbox::backdrop{ background:rgba(0,0,0,.7); }
+
+#lightboxBody{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  max-height:90vh;
+}
+
+#closeLightbox{
+  position:absolute;
+  right:10px;
+  top:10px;
+  width:36px;
+  height:36px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:10px;
+  font-size:20px;
+  cursor:pointer;
+}
+#closeLightbox:hover{ color:var(--accent); border-color:rgba(34,211,238,.35); }
+
+#lightboxBody img{
+  display:block;
+  width:min(96vw, 1100px);
+  height:auto;
+}
+
+
+/* Lightbox sizing */
+#lightbox{
+  width:min(96vw, 1100px);
+  max-height:90vh;
+  border:none;
+  padding:0;
+  background:transparent;
+}
+#lightbox::backdrop{ background:rgba(0,0,0,.7); }
+
+#lightboxBody{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  max-height:90vh;
+}
+
+#lightboxBody img.lightbox-img{
+  display:block;
+  width:min(96vw, 1100px);
+  max-height:85vh;
+  object-fit:contain;   /* no cropping; scale down to fit */
+}
