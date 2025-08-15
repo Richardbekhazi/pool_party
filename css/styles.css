@@ -177,3 +177,49 @@ footer{padding:10px 22px 18px; color:var(--muted); font-size:12px;}
   .header-nav{ padding:4px; }
   .btn{ padding:6px 10px; }
 }
+
+/* Keep header content on a single, tidy line */
+.card > header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* right-side container that holds nav + auth */
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+/* button group */
+.header-nav{
+  display:flex;
+  gap:8px;
+  padding:6px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:rgba(255,255,255,.02);
+}
+
+/* reuse your .btn look; small variants */
+.btn{
+  display:inline-block; padding:8px 14px; border-radius:10px;
+  border:1px solid var(--border); color:var(--text); text-decoration:none;
+  transition:.18s ease; font-weight:600; background:#0f172a; line-height:1.2;
+}
+.btn:hover{ transform:translateY(-1px); border-color:rgba(34,211,238,.35); color:var(--accent); }
+.btn-current{ color:var(--accent); border-color:rgba(34,211,238,.45); box-shadow:0 0 0 2px rgba(34,211,238,.12) inset; }
+.btn-ghost{ background:transparent; }
+
+/* make sure long titles don't push buttons down */
+h1{ margin:0; font-size:22px; min-width:0; }
+
+/* small screens: shrink padding so it stays on one line */
+@media (max-width:640px){
+  .header-nav{ padding:4px; }
+  .btn{ padding:6px 10px; }
+  .header-actions{ gap:8px; }
+}

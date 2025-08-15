@@ -1,19 +1,23 @@
-// Attach a compact nav to the right side of the card header on every page
+// js/nav.js
+// Attach a compact nav + auth slot INSIDE the card header on every page
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".card > header");
   if (!header) return;
 
-  // detect current page
-  const path = location.pathname.toLowerCase();
-  const isHome     = path.endsWith("/") || path.endsWith("index.html");
-  const isMoney    = path.endsWith("money.html");
-  const isPictures = path.endsWith("pictures.html");
+  // current page
+  const p = location.pathname.toLowerCase();
+  const isHome     = p.endsWith("/") || p.endsWith("index.html");
+  const isMoney    = p.endsWith("money.html");
+  const isPictures = p.endsWith("pictures.html");
 
-  // remove any old nav
-  const old = header.querySelector(".header-nav");
-  if (old) old.remove();
+  // remove any previous actions block
+  header.querySelector(".header-actions")?.remove();
 
-  // build nav
+  // wrapper on the RIGHT side of header
+  const actions = document.createElement("div");
+  actions.className = "header-actions";
+
+  // nav group
   const nav = document.createElement("nav");
   nav.className = "header-nav";
   nav.setAttribute("aria-label", "Site navigation");
@@ -23,5 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     <a class="btn ${isPictures ? "btn-current" : ""}" href="pictures.html">Pictures</a>
   `;
 
-  header.appendChild(nav);
+  // placeholder for auth control (filled by nav-auth.js)
+  const authSlot = document.createElement("div");
+  authSlot.className = "auth-slot";
+
+  actions.append(nav, authSlot);
+  header.appendChild(actions);
 });

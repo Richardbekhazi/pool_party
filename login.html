@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pool Party • Log in</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/nav.js" defer></script>
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/nav-auth.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header><h1>Log in</h1></header>
+
+      <div style="padding:18px 22px">
+        <p class="hint" style="margin-bottom:10px">Sign in to view Money or Pictures.</p>
+        <button id="googleSignIn" class="btn btn-accent">Continue with Google</button>
+        <!-- Optional: add email/password later -->
+      </div>
+
+      <footer>
+        Trouble logging in? Make sure your GitHub Pages URL is listed in Firebase → Authorized domains.
+      </footer>
+    </div>
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>
