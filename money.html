@@ -3,41 +3,55 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="js/nav.js" defer></script>
   <title>Pool Party • Money</title>
+
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <script src="js/nav.js" defer></script>
+
+  <!-- Auth -->
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/nav-auth.js"></script>
   <script type="module" src="js/guard.js"></script>
+
+  <!-- Page logic -->
   <script src="js/render_attendees.js" defer></script>
   <script src="js/sortable.js" defer></script>
+  <script src="js/ticker.js" defer></script>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <header class="page-header">
-        <h1>Money</h1>
+      <header>
+        <div class="titleblock">
+          <h1>Money</h1>
+          <p class="subhead">Contributions and contacts</p>
+        </div>
+        <!-- nav.js injects the header nav on the right -->
       </header>
 
-      <div class="hint">Tap a header to sort</div>
-      <div class="table-wrap">
-        <table aria-label="Contacts list" id="contacts-table">
-          <thead>
-            <tr>
-              <th class="idx sortable" data-type="number">#</th>
-              <th class="sortable" data-type="text">Name</th>
-              <th class="sortable" data-type="money">Fee</th>
-              <th class="sortable" data-type="text">Meal</th>
-              <th class="sortable" data-type="phone">Phone</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div class="content">
+        <div class="table-wrap">
+          <table aria-label="Contacts list" id="contacts-table">
+            <thead>
+              <tr>
+                <th class="idx sortable" data-type="number" aria-sort="none">#</th>
+                <th class="sortable" data-type="text" aria-sort="none">Name</th>
+                <th class="sortable" data-type="money" aria-sort="none">Fee</th>
+                <th class="sortable" data-type="text" aria-sort="none">Meal</th>
+                <th class="sortable" data-type="phone" aria-sort="none">Phone</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
 
-      <footer>Site by Richard. Media on Google. Code on GitHub.</footer>
+      <!-- ticker.js will render the rotating news ticker here -->
+      <footer></footer>
     </div>
   </div>
 </body>

@@ -1,0 +1,22 @@
+/* Page-level polish for Money & Pictures (kept out of styles.css) */
+
+/* stack title + optional subhead on the left, nav stays on the right */
+.titleblock{
+  display:flex; flex-direction:column; gap:6px; min-width:0;
+}
+.titleblock h1{ margin:0; font-size:28px; letter-spacing:.2px; }
+.subhead{
+  margin:0; color:var(--muted); font-size:13px;
+}
+
+/* optional slim bar right under the header (used on Pictures only) */
+.section-bar{
+  padding:10px 18px; border-top:1px solid var(--border);
+  color:#cbd5e1; font-size:14px; background:rgba(255,255,255,.01);
+}
+
+/* keep tables and galleries snug against the header */
+.card .content{ padding:0; }
+
+/* you had the old .hint line — make sure it's gone */
+.hint{ display:none !important; }

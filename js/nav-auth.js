@@ -1,12 +1,14 @@
-// js/nav-auth.js  (type="module")
+// js/nav-auth.js
 import { auth } from "./firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const onLoginPage = location.pathname.toLowerCase().endsWith("login.html");
 
 function render(user){
   const slot = document.querySelector(".header-actions .auth-slot");
   if (!slot) return;
 
-  slot.innerHTML = ""; // clear
+  slot.innerHTML = "";
   slot.style.display = "flex";
   slot.style.gap = "8px";
 
@@ -22,7 +24,7 @@ function render(user){
     out.onclick = e => { e.preventDefault(); signOut(auth); };
 
     slot.append(who, out);
-  } else {
+  } else if (!onLoginPage) {
     const login = document.createElement("a");
     login.className = "btn";
     login.href = "login.html";
@@ -30,5 +32,4 @@ function render(user){
     slot.append(login);
   }
 }
-
 onAuthStateChanged(auth, render);

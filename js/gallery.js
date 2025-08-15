@@ -1,5 +1,12 @@
-const driveImage = id => `https://drive.google.com/uc?export=view&id=${id}`;
-const driveThumb = id => `https://drive.google.com/thumbnail?id=${id}&sz=w400`;
+// js/gallery.js
+
+// Reliable Google Drive endpoints
+const driveImage = id => `https://drive.google.com/uc?export=view&id=${id}`; // fallback
+const driveThumb = (id, w = 400) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;
+const driveFullThumb = (id, w = 2000) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;
+
 let _pictures = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -14,44 +21,55 @@ document.addEventListener("DOMContentLoaded", async () => {
     const frag = document.createDocumentFragment();
     _pictures.forEach((item, i) => {
       const card = document.createElement("article");
-      card.className = "card-item"; card.tabIndex = 0; card.dataset.index = i;
+      card.className = "card-item";
+      card.tabIndex = 0;
+      card.dataset.index = i;
 
       const img = document.createElement("img");
-      img.className = "card-thumb"; img.loading = "lazy";
-      img.src = driveThumb(item.id); img.alt = item.title || `Photo ${i+1}`;
+      img.className = "card-thumb";
+      img.loading = "lazy";
+      img.src = driveThumb(item.id, 400);
+      img.alt = "Party photo";
       card.appendChild(img);
 
+      // Overlay meta (no filename shown)
       const meta = document.createElement("div");
       meta.className = "card-meta";
-      meta.innerHTML = `<span>${item.title || ""}</span><span class="badge view">View</span>`;
+      meta.innerHTML = `<span class="badge view" aria-label="Open full image">View</span>`;
       card.appendChild(meta);
 
       frag.appendChild(card);
     });
+
     grid.replaceChildren(frag);
   } catch (e) {
     console.error("Failed to load pictures:", e);
-    grid.innerHTML = `<p style="color:#fca5a5;padding:12px 18px">Could not load pictures (see console).</p>`;
+    grid.innerHTML =
+      `<p style="color:#fca5a5;padding:12px 18px">Could not load pictures (see console).</p>`;
   }
 
+  // Delegated handlers
   grid.addEventListener("click", onOpen);
-  grid.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" ") { e.preventDefault(); onOpen(e);} });
+  grid.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onOpen(e);
+    }
+  });
 
-  function onOpen(e){
-    const card = e.target.closest(".card-item"); if (!card) return;
+  function onOpen(e) {
+    const card = e.target.closest(".card-item");
+    if (!card) return;
     const item = _pictures[Number(card.dataset.index)];
     if (item) openLightbox(item);
   }
 });
 
-const driveFullThumb = (id, w = 2000) =>
-  `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;
-
-function openLightbox(item){
+function openLightbox(item) {
   const dlg = document.getElementById("lightbox");
   const body = document.getElementById("lightboxBody");
 
-  // Fallback: if <dialog> isn’t supported, open a new tab
+  // Fallback: if <dialog> isn’t supported, open image in a new tab
   if (!dlg || typeof dlg.showModal !== "function") {
     window.open(driveFullThumb(item.id, 2000), "_blank", "noopener");
     return;
@@ -61,11 +79,11 @@ function openLightbox(item){
 
   const img = new Image();
   img.className = "lightbox-img";
-  img.alt = item.title || "Photo";
+  img.alt = "Party photo";
   img.loading = "eager";
   img.decoding = "async";
 
-  // Use big thumbnail + responsive srcset
+  // Large thumbnail + responsive srcset (reliable)
   img.src = driveFullThumb(item.id, 1600);
   img.srcset = [
     driveFullThumb(item.id, 800)  + " 800w",
@@ -75,19 +93,26 @@ function openLightbox(item){
   ].join(", ");
   img.sizes = "90vw";
 
-  // If thumbnail ever fails, try the view endpoint once
+  // If thumbnail fails (rare), try the view endpoint once
   img.onerror = () => {
     img.onerror = null;
-    img.src = `https://drive.google.com/uc?export=view&id=${item.id}`;
+    img.src = driveImage(item.id);
   };
 
   body.appendChild(img);
   dlg.showModal();
 
-  // close handlers
+  // Close handlers
   const closeBtn = document.getElementById("closeLightbox");
-  function close(){ dlg.close(); body.innerHTML = ""; dlg.removeEventListener("keydown", onEsc); closeBtn.onclick = null; }
-  function onEsc(e){ if(e.key === "Escape") close(); }
+  function close() {
+    dlg.close();
+    body.innerHTML = "";
+    dlg.removeEventListener("keydown", onEsc);
+    closeBtn.onclick = null;
+  }
+  function onEsc(e) {
+    if (e.key === "Escape") close();
+  }
   closeBtn.onclick = close;
   dlg.addEventListener("keydown", onEsc);
 }

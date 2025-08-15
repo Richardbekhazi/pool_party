@@ -3,35 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="js/nav.js" defer></script>
   <title>Pool Party • Pictures</title>
+
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <script src="js/nav.js" defer></script>
+
+  <!-- Auth -->
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/nav-auth.js"></script>
   <script type="module" src="js/guard.js"></script>
+
+  <!-- Page logic -->
   <script src="js/gallery.js" defer></script>
+  <script src="js/ticker.js" defer></script>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <header class="page-header">
-        <h1>Pictures</h1>
+      <header>
+        <div class="titleblock">
+          <h1>Pictures</h1>
+          <p class="subhead">Memories with friends — open any photo to view.</p>
+        </div>
+        <!-- nav.js injects the header nav on the right -->
       </header>
 
-      <div class="hint">Photos are hosted on Google Drive. Click a card to view full size.</div>
-      <div id="gallery" class="gallery-grid" aria-live="polite"></div>
+      <!-- Neutral section label (no hosting mention) -->
+      <div class="section-bar">Gallery</div>
 
-      <footer>135 memories and counting 📸</footer>
+      <div class="content">
+        <section id="gallery" class="gallery-grid" aria-live="polite"></section>
+
+        <!-- Lightbox -->
+        <dialog id="lightbox">
+          <button id="closeLightbox" class="btn" aria-label="Close">✕</button>
+          <div id="lightboxBody"></div>
+        </dialog>
+      </div>
+
+      <!-- ticker.js will render the rotating news ticker here -->
+      <footer></footer>
     </div>
   </div>
-
-  <!-- Lightbox -->
-  <dialog id="lightbox">
-    <button id="closeLightbox" aria-label="Close">×</button>
-    <div id="lightboxBody"></div>
-  </dialog>
 </body>
 </html>

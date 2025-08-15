@@ -223,3 +223,81 @@ h1{ margin:0; font-size:22px; min-width:0; }
   .btn{ padding:6px 10px; }
   .header-actions{ gap:8px; }
 }
+
+
+/* --- nicer card footer bar on all pages --- */
+.card > footer{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 18px;
+  color:var(--muted);
+  font-size:13px;
+  border-top:1px solid var(--border);
+  /* subtle glass strip */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) padding-box,
+    rgba(0,0,0,.15);
+}
+
+/* optional tiny sparkle before the text */
+.card > footer::before{
+  content:"✦";
+  font-size:12px;
+  color:var(--accent);
+  opacity:.85;
+}
+
+/* keep hero caption element around but invisible (JS also hides it) */
+.hero-caption{ display:none; }
+
+
+/* Remove the old single-line footer text flair */
+.card > footer::before { content: none; }
+
+
+/* Ticker container in footer */
+.ticker{ width:100%; }
+.ticker-viewport{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)) padding-box,
+    rgba(0,0,0,.12);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:6px 0;
+}
+
+/* Edge fades */
+.ticker-viewport::before,
+.ticker-viewport::after{
+  content:"";
+  position:absolute; top:0; bottom:0; width:40px; pointer-events:none;
+}
+.ticker-viewport::before{
+  left:0;  background:linear-gradient(90deg, var(--card) 0%, rgba(17,24,39,0) 100%);
+}
+.ticker-viewport::after{
+  right:0; background:linear-gradient(270deg, var(--card) 0%, rgba(17,24,39,0) 100%);
+}
+
+/* Moving track — JS updates translateX continuously */
+.ticker-track{
+  display:flex;
+  align-items:center;
+  white-space:nowrap;
+  gap:0;            /* passes sit flush */
+  will-change:transform;
+  padding:0 48px;   /* breathing room */
+}
+.pass{ display:flex; align-items:center; gap:24px; }
+
+.ticker-item{ color:var(--text); opacity:.9; }
+.ticker-sep{ color:var(--accent); opacity:.8; }
+
+@media (max-width:640px){
+  .ticker-viewport::before, .ticker-viewport::after { width:24px; }
+  .ticker-track{ padding:0 28px; }
+  .pass{ gap:18px; }
+}
