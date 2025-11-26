@@ -23,21 +23,24 @@
   <script src="js/ticker.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+  <main class="wrap">
+    <article class="card">
       <header>
         <div class="titleblock">
           <h1>Pictures</h1>
-          <p class="subhead">Memories with friends — open any photo to view.</p>
+          <p class="subhead hint">Memories with friends — open any photo to view.</p>
         </div>
-        <!-- nav.js injects the header nav on the right -->
+        <!-- Container for nav.js injection -->
+        <div class="header-actions"></div>
       </header>
 
       <!-- Neutral section label (no hosting mention) -->
       <div class="section-bar">Gallery</div>
 
       <div class="content">
-        <section id="gallery" class="gallery-grid" aria-live="polite"></section>
+        <section id="gallery" class="gallery-grid" aria-live="polite">
+          <!-- JS injects images here -->
+        </section>
 
         <!-- Lightbox -->
         <dialog id="lightbox">
@@ -47,8 +50,18 @@
       </div>
 
       <!-- ticker.js will render the rotating news ticker here -->
-      <footer></footer>
-    </div>
-  </div>
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <div class="pass">
+                <span class="ticker-item">Loading latest photos...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
 </body>
 </html>

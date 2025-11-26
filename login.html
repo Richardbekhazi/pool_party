@@ -6,7 +6,7 @@
   <title>Pool Party • Log in</title>
 
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Base + page styles -->
   <link rel="stylesheet" href="css/styles.css">
@@ -24,8 +24,8 @@
   <script src="js/ticker.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card login-card">
+  <main class="wrap">
+    <article class="card login-card">
       <header>
         <h1>Log in</h1>
       </header>
@@ -35,10 +35,10 @@
 
         <!-- 4-digit PIN UI -->
         <div id="pinGate" class="pin-grid" aria-label="Passcode input">
-          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 1">
-          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 2">
-          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 3">
-          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="off">
+          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 2" autocomplete="off">
+          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 3" autocomplete="off">
+          <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" aria-label="Digit 4" autocomplete="off">
         </div>
         <div id="gateMsg" class="gate-msg" aria-live="polite"></div>
 
@@ -48,9 +48,21 @@
         </button>
       </section>
 
-      <footer></footer>
-    </div>
-  </div>
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <div class="pass">
+                <span class="ticker-item">Secure Access</span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">Invite Only</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
 
   <!-- Passcode + sign-in logic -->
   <script type="module" src="js/login.js"></script>

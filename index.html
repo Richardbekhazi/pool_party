@@ -6,7 +6,7 @@
   <script src="js/nav.js" defer></script>
   <title>Pool Party</title>
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/nav-auth.js"></script>
@@ -15,19 +15,69 @@
   <script src="js/ticker.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+  <main class="wrap">
+    <article class="card">
+      
+      <!-- Header -->
       <header class="landing-header">
-        <h1>Pool Party</h1>
+        <div>
+          <h1>Pool Party</h1>
+          <span class="hint">Dashboard</span>
+        </div>
+        <div class="header-actions">
+          <!-- nav.js injects content here -->
+        </div>
       </header>
 
+      <!-- Hero: Dynamic image -->
       <figure id="hero" class="hero" aria-label="Random party photo">
         <img id="heroImg" alt="Pool party photo" />
         <figcaption id="heroCaption" class="hero-caption"></figcaption>
       </figure>
 
-      <footer>One random memory on every visit ✨</footer>
-    </div>
-  </div>
+      <!-- NEW: Dashboard Portals (Replaces unused buttons & table) -->
+      <section class="dashboard-grid">
+        <a href="money.html" class="portal-card accent">
+          <div class="portal-icon">💸</div>
+          <div class="portal-content">
+            <h2>Money & Guests</h2>
+            <p>Chip in, check status, and see who's coming.</p>
+          </div>
+          <div class="portal-arrow">→</div>
+        </a>
+
+        <!-- Fixed Link: Points to pictures.html now -->
+        <a href="pictures.html" class="portal-card">
+          <div class="portal-icon">📸</div>
+          <div class="portal-content">
+            <h2>Gallery</h2>
+            <p>Relive the night. Upload and view party photos.</p>
+          </div>
+          <div class="portal-arrow">→</div>
+        </a>
+      </section>
+
+      <!-- Footer: Ticker -->
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <!-- ticker.js targets this track -->
+              <div class="pass">
+                <span class="ticker-item">Welcome to the Night Swim</span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">Check the gallery</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 8px; font-size: 12px; opacity: 0.5;">
+          One random memory on every visit ✨
+        </div>
+      </footer>
+
+    </article>
+  </main>
 </body>
 </html>

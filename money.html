@@ -6,7 +6,7 @@
   <title>Pool Party • Money</title>
 
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
 
@@ -21,20 +21,36 @@
   <script src="js/render_attendees.js" defer></script>
   <script src="js/sortable.js" defer></script>
   <script src="js/ticker.js" defer></script>
+  
+  <!-- NEW: Auto-calculate stats from table data -->
+  <script src="js/stats.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+  <main class="wrap">
+    <article class="card">
       <header>
         <div class="titleblock">
           <h1>Money</h1>
-          <p class="subhead">Contributions and contacts</p>
+          <p class="subhead">Contributions & Logistics</p>
         </div>
-        <!-- nav.js injects the header nav on the right -->
+        <div class="header-actions"></div>
       </header>
 
       <div class="content">
-        <div class="table-wrap">
+        
+        <!-- At-a-glance Stats Dashboard -->
+        <section class="stats-overview">
+          <div class="stat-card">
+            <span class="stat-label">Total Pool</span>
+            <span class="stat-value" id="statTotal">$0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Confirmed Guests</span>
+            <span class="stat-value" id="statCount">0</span>
+          </div>
+        </section>
+
+        <section class="table-wrap">
           <table aria-label="Contacts list" id="contacts-table">
             <thead>
               <tr>
@@ -45,14 +61,48 @@
                 <th class="sortable" data-type="phone" aria-sort="none">Phone</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <!-- Skeleton Loading State -->
+              <tr class="skeleton-row">
+                <td class="idx"><div class="sk-blob"></div></td>
+                <td><div class="sk-line long"></div></td>
+                <td><div class="sk-line short"></div></td>
+                <td><div class="sk-line medium"></div></td>
+                <td><div class="sk-line medium"></div></td>
+              </tr>
+              <tr class="skeleton-row">
+                <td class="idx"><div class="sk-blob"></div></td>
+                <td><div class="sk-line long"></div></td>
+                <td><div class="sk-line short"></div></td>
+                <td><div class="sk-line medium"></div></td>
+                <td><div class="sk-line medium"></div></td>
+              </tr>
+              <tr class="skeleton-row">
+                <td class="idx"><div class="sk-blob"></div></td>
+                <td><div class="sk-line long"></div></td>
+                <td><div class="sk-line short"></div></td>
+                <td><div class="sk-line medium"></div></td>
+                <td><div class="sk-line medium"></div></td>
+              </tr>
+            </tbody>
           </table>
-        </div>
+        </section>
       </div>
 
-      <!-- ticker.js will render the rotating news ticker here -->
-      <footer></footer>
-    </div>
-  </div>
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <div class="pass">
+                <span class="ticker-item">Financials</span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">Syncing latest payments...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
 </body>
 </html>

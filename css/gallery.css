@@ -1,121 +1,189 @@
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
-  gap:14px;
-  padding:16px 18px 22px;
+/* GALLERY STYLES - Modernized
+   Vibe: Responsive grid with immersive hover states
+*/
+
+.gallery-grid {
+  display: grid;
+  /* Responsive grid that adapts to screen size */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 24px;
+  width: 100%;
 }
 
-.card-item{
-  background:rgba(255,255,255,0.02);
-  border:1px solid var(--border);
-  border-radius:14px;
-  overflow:hidden;
-  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-  cursor:pointer;
-}
-.card-item:hover{ transform:translateY(-2px); border-color:rgba(34,211,238,.35); box-shadow:0 10px 20px rgba(0,0,0,.25); }
-
-.card-thumb{
-  width:100%;
-  aspect-ratio: 4 / 3;
-  object-fit:cover;
-  display:block;
+.card-item {
+  position: relative;
+  background: var(--card); /* Glass background from global styles */
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  /* Smooth transform for scale and border */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.card-meta{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 12px;
-  color:var(--text);
-  font-size:14px;
-}
-.badge.view{ color:#a7f3d0; background:rgba(16,185,129,.12); border-color:rgba(16,185,129,.35); }
-
-/* lightbox */
-#lightbox{
-  width:min(96vw, 1100px);
-  max-height:90vh;
-  border:none;
-  padding:0;
-  background:transparent;
-}
-#lightbox::backdrop{ background:rgba(0,0,0,.7); }
-
-#lightboxBody{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  max-height:90vh;
+.card-item:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(34, 211, 238, 0.5); /* Neon accent glow */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }
 
-#closeLightbox{
-  position:absolute;
-  right:10px;
-  top:10px;
-  width:36px;
-  height:36px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  border-radius:10px;
-  font-size:20px;
-  cursor:pointer;
-}
-#closeLightbox:hover{ color:var(--accent); border-color:rgba(34,211,238,.35); }
-
-#lightboxBody img{
-  display:block;
-  width:min(96vw, 1100px);
-  height:auto;
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Square crop for uniform grid */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-
-/* Lightbox sizing */
-#lightbox{
-  width:min(96vw, 1100px);
-  max-height:90vh;
-  border:none;
-  padding:0;
-  background:transparent;
-}
-#lightbox::backdrop{ background:rgba(0,0,0,.7); }
-
-#lightboxBody{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  max-height:90vh;
+/* Subtle zoom on image hover */
+.card-item:hover .card-thumb {
+  transform: scale(1.08);
 }
 
-#lightboxBody img.lightbox-img{
-  display:block;
-  width:min(96vw, 1100px);
-  max-height:85vh;
-  object-fit:contain;   /* no cropping; scale down to fit */
+.card-meta {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-
-/* overlay meta on each thumbnail (no filename) */
-.card-item{ position:relative; border-radius:16px; overflow:hidden; }
-.card-thumb{ width:100%; height:auto; display:block; }
-
-.card-meta{
-  position:absolute; left:12px; right:12px; bottom:10px;
-  display:flex; justify-content:flex-end; align-items:center;
-  pointer-events:none;   /* the chip doesn't steal focus; click hits card */
+.card-item:hover .card-meta {
+  opacity: 1;
 }
 
-.badge.view{
-  pointer-events:auto;
-  padding:6px 12px;
-  border-radius:999px;
-  border:1px solid rgba(34,211,238,.35);
-  background:rgba(15,23,42,.7);
-  color:var(--accent);
-  font-weight:600;
-  backdrop-filter: blur(6px) saturate(130%);
+.badge.view {
+  background: rgba(34, 211, 238, 0.15);
+  color: #cffafe;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  backdrop-filter: blur(4px);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-.card-item:hover .badge.view{ transform:translateY(-1px); }
+
+/* --- LIGHTBOX STYLES --- */
+
+#lightbox {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  /* Centering logic */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* CRITICAL: Allows clicks to pass through empty space if needed, 
+     but we MUST re-enable it on children */
+  pointer-events: none; 
+}
+
+#lightbox[open] {
+  display: flex;
+}
+
+#lightbox::backdrop {
+  background: rgba(15, 23, 42, 0.95); /* Slightly darker for better focus */
+  backdrop-filter: blur(8px);
+}
+
+#lightboxBody {
+  position: relative;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  /* Fix: Re-enable clicks on the image card */
+  pointer-events: auto; 
+  animation: zoomIn 0.25s ease-out;
+}
+
+#lightboxBody img, 
+#lightboxBody img.lightbox-img {
+  display: block;
+  max-width: min(90vw, 1200px);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+#closeLightbox {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 48px; /* Larger touch target */
+  height: 48px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  
+  /* FIX: Ensure button captures clicks despite parent settings */
+  pointer-events: auto; 
+  z-index: 100;
+}
+
+#closeLightbox:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0f172a;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile Tweaks */
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .card-meta {
+    padding: 8px;
+  }
+  
+  .badge.view {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  /* Move close button slightly for mobile reachability */
+  #closeLightbox {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}

@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error(`HTTP ${res.status} for data/pictures.json`);
     _pictures = await res.json();
 
+    // NOTE: Sorting by resolution/quality is not possible because
+    // pictures.json lacks 'width' and 'height' properties.
+    // The gallery will display images in the order they appear in the JSON file.
+
     const frag = document.createDocumentFragment();
     _pictures.forEach((item, i) => {
       const card = document.createElement("article");
