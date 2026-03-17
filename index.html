@@ -4,10 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
   <title>Pool Party</title>
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/landing.css">
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/nav-auth.js"></script>
   <script type="module" src="js/guard.js"></script>
@@ -15,27 +17,70 @@
   <script src="js/ticker.js" defer></script>
 </head>
 <body>
+  <!-- Ambient floating bubbles -->
+  <div class="bubbles" aria-hidden="true">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
   <main class="wrap">
     <article class="card">
-      
+
       <!-- Header -->
       <header class="landing-header">
-        <div>
+        <a href="index.html" class="title-link">
           <h1>Pool Party</h1>
           <span class="hint">Dashboard</span>
-        </div>
+        </a>
         <div class="header-actions">
           <!-- nav.js injects content here -->
         </div>
       </header>
 
-      <!-- Hero: Dynamic image -->
+      <!-- Hero: Dynamic image with cinematic overlay -->
       <figure id="hero" class="hero" aria-label="Random party photo">
         <img id="heroImg" alt="Pool party photo" />
+        <div class="hero-overlay">
+          <div class="hero-overlay-content">
+            <span class="hero-tag">✦ Night Swim Edition</span>
+            <h2 class="hero-title">Pool Party</h2>
+            <p class="hero-subtitle">Where memories float and friendships run deep.</p>
+          </div>
+        </div>
+        <div class="hero-wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path class="wave wave-back" d="M0,80 C300,30 600,100 900,50 C1100,20 1300,70 1440,80 L1440,120 L0,120 Z" />
+            <path class="wave wave-front" d="M0,64 C360,110 720,10 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" />
+          </svg>
+        </div>
         <figcaption id="heroCaption" class="hero-caption"></figcaption>
       </figure>
 
-      <!-- NEW: Dashboard Portals (Replaces unused buttons & table) -->
+      <!-- Quick Stats Ribbon -->
+      <section class="landing-ribbon" aria-label="Event highlights">
+        <div class="ribbon-item">
+          <span class="ribbon-number">19</span>
+          <span class="ribbon-label">Guests</span>
+        </div>
+        <div class="ribbon-divider"></div>
+        <div class="ribbon-item">
+          <span class="ribbon-number">1</span>
+          <span class="ribbon-label">Epic Night</span>
+        </div>
+        <div class="ribbon-divider"></div>
+        <div class="ribbon-item">
+          <span class="ribbon-number">∞</span>
+          <span class="ribbon-label">Memories</span>
+        </div>
+      </section>
+
+      <!-- Dashboard Portals -->
       <section class="dashboard-grid">
         <a href="money.html" class="portal-card accent">
           <div class="portal-icon">💸</div>
@@ -46,7 +91,6 @@
           <div class="portal-arrow">→</div>
         </a>
 
-        <!-- Fixed Link: Points to pictures.html now -->
         <a href="pictures.html" class="portal-card">
           <div class="portal-icon">📸</div>
           <div class="portal-content">
@@ -62,7 +106,6 @@
         <div class="ticker">
           <div class="ticker-viewport">
             <div class="ticker-track">
-              <!-- ticker.js targets this track -->
               <div class="pass">
                 <span class="ticker-item">Welcome to the Night Swim</span>
                 <span class="ticker-sep">✦</span>
@@ -71,8 +114,8 @@
             </div>
           </div>
         </div>
-        
-        <div style="text-align: center; margin-top: 8px; font-size: 12px; opacity: 0.5;">
+
+        <div class="landing-footer-hint">
           One random memory on every visit ✨
         </div>
       </footer>

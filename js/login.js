@@ -6,8 +6,9 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Where to send signed-in users
-const REDIRECT_TO = "index.html"; // or "pictures.html" / "money.html"
+// Where to send signed-in users (respect ?next= from guard.js)
+const nextParam = new URLSearchParams(location.search).get("next");
+const REDIRECT_TO = nextParam ? decodeURIComponent(nextParam) : "index.html";
 
 // 4-digit passcode
 const PASSCODE = "2552";

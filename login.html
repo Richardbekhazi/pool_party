@@ -10,10 +10,12 @@
 
   <!-- Base + page styles -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
   <link rel="stylesheet" href="css/login.css">
 
   <!-- Header nav -->
   <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
 
   <!-- Auth -->
   <script type="module" src="js/firebase-init.js"></script>
@@ -24,10 +26,24 @@
   <script src="js/ticker.js" defer></script>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card login-card">
-      <header>
-        <h1>Log in</h1>
+  <!-- Ambient particles -->
+  <div class="page-particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <main class="wrap page-fullbleed">
+    <article class="card page-card login-card">
+      <header class="page-header login-accent">
+        <a href="index.html" class="titleblock title-link">
+          <h1>🔐 Log in</h1>
+          <p class="subhead">Secure Access</p>
+        </a>
+        <div class="header-actions"></div>
       </header>
 
       <section class="login-body">

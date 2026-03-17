@@ -1,7 +1,9 @@
 // js/nav.js
 // Attach a compact nav + auth slot INSIDE the card header on every page
 document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector(".card > header");
+  // Support both direct-child headers and headers nested inside .page-hero
+  const header = document.querySelector(".card > header")
+              || document.querySelector(".card .page-hero > header");
   if (!header) return;
 
   // current page

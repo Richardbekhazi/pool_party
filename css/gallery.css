@@ -1,46 +1,82 @@
-/* GALLERY STYLES - Modernized
-   Vibe: Responsive grid with immersive hover states
+/* GALLERY STYLES — Full-bleed Immersive Grid
+   Vibe: Responsive masonry-feel with premium hover states
 */
 
 .gallery-grid {
   display: grid;
-  /* Responsive grid that adapts to screen size */
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
-  padding: 24px;
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
   width: 100%;
+  animation: gallery-fade 0.5s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes gallery-fade {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .card-item {
   position: relative;
-  background: var(--card); /* Glass background from global styles */
+  background: rgba(30,41,59,0.5);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  /* Smooth transform for scale and border */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  will-change: transform;
 }
 
 .card-item:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: rgba(34, 211, 238, 0.5); /* Neon accent glow */
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.4);
   z-index: 2;
+}
+
+/* Gradient border glow on hover (matches landing portals) */
+.card-item::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(34,211,238,0.5),
+    rgba(99,102,241,0.3) 40%,
+    transparent 60%,
+    rgba(34,211,238,0.3)
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card-item:hover::before {
+  opacity: 1;
 }
 
 .card-thumb {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Square crop for uniform grid */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
+  filter: brightness(0.92) saturate(1.05);
 }
 
-/* Subtle zoom on image hover */
 .card-item:hover .card-thumb {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  filter: brightness(1) saturate(1.2);
 }
 
 .card-meta {
@@ -53,6 +89,7 @@
   padding: 16px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 2;
 }
 
 .card-item:hover .card-meta {
@@ -72,7 +109,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* --- LIGHTBOX STYLES --- */
+
+/* --- LIGHTBOX --- */
 
 #lightbox {
   border: none;
@@ -82,22 +120,29 @@
   height: 100%;
   max-width: 100vw;
   max-height: 100vh;
-  /* Centering logic */
-  display: flex;
+  position: fixed;
+  inset: 0;
+  display: none;
   align-items: center;
   justify-content: center;
-  /* CRITICAL: Allows clicks to pass through empty space if needed, 
-     but we MUST re-enable it on children */
-  pointer-events: none; 
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
 }
 
 #lightbox[open] {
   display: flex;
+  pointer-events: auto;
 }
 
 #lightbox::backdrop {
-  background: rgba(15, 23, 42, 0.95); /* Slightly darker for better focus */
-  backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+/* Lock body scroll when lightbox is open */
+body.lightbox-open {
+  overflow: hidden;
 }
 
 #lightboxBody {
@@ -106,11 +151,10 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   padding: 8px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(34,211,238,0.06);
   overflow: hidden;
-  /* Fix: Re-enable clicks on the image card */
-  pointer-events: auto; 
-  animation: zoomIn 0.25s ease-out;
+  pointer-events: auto;
+  animation: lightbox-in 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 
 #lightboxBody img, 
@@ -125,27 +169,32 @@
 }
 
 #closeLightbox {
-  position: absolute;
+  position: fixed;
   top: 24px;
   right: 24px;
-  width: 48px; /* Larger touch target */
+  width: 48px;
   height: 48px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   border-radius: 50%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 24px;
   line-height: 1;
+  padding: 0;
   transition: all 0.2s ease;
-  backdrop-filter: blur(4px);
-  
-  /* FIX: Ensure button captures clicks despite parent settings */
-  pointer-events: auto; 
-  z-index: 100;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+  z-index: 10000;
+}
+
+#lightbox[open] ~ #closeLightbox,
+#lightbox[open] #closeLightbox {
+  display: flex;
 }
 
 #closeLightbox:hover {
@@ -156,29 +205,23 @@
   box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
 }
 
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-/* Mobile Tweaks */
+
+/* --- Mobile --- */
 @media (max-width: 640px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    padding: 12px;
+    padding: 16px;
   }
   
-  .card-meta {
-    padding: 8px;
-  }
-  
-  .badge.view {
-    padding: 4px 8px;
-    font-size: 10px;
-  }
+  .card-meta { padding: 8px; }
+  .badge.view { padding: 4px 8px; font-size: 10px; }
 
-  /* Move close button slightly for mobile reachability */
   #closeLightbox {
     top: 16px;
     right: 16px;
@@ -186,4 +229,86 @@
     height: 40px;
     font-size: 20px;
   }
+}
+
+
+/* ---- Light Theme Overrides ---- */
+[data-theme="light"] .card-item {
+  background: #fff;
+  border-color: rgba(0,0,0,0.06);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .card-item:hover {
+  border-color: rgba(8,145,178,0.35);
+  box-shadow: 0 16px 40px -8px rgba(0,0,0,0.12);
+}
+
+[data-theme="light"] .card-item::before {
+  background: linear-gradient(
+    135deg,
+    rgba(8,145,178,0.35),
+    rgba(99,102,241,0.2) 40%,
+    transparent 60%,
+    rgba(8,145,178,0.2)
+  );
+}
+
+[data-theme="light"] .card-thumb {
+  filter: brightness(1) saturate(1.05);
+}
+
+[data-theme="light"] .card-meta {
+  background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, transparent 60%);
+}
+
+[data-theme="light"] .badge.view {
+  background: rgba(8, 145, 178, 0.1);
+  color: var(--accent);
+  border-color: rgba(8, 145, 178, 0.25);
+}
+
+[data-theme="light"] #lightbox::backdrop {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+}
+
+[data-theme="light"] #lightboxBody {
+  background: #fff;
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] #closeLightbox {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] #closeLightbox:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.3);
+}
+
+[data-theme="light"] #lightbox::backdrop {
+  background: rgba(240, 244, 248, 0.92);
+}
+
+[data-theme="light"] #closeLightbox {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #334155;
+}
+
+[data-theme="light"] #closeLightbox:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+[data-theme="light"] #lightboxBody {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
 }

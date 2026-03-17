@@ -6,12 +6,13 @@
   <title>Pool Party • Pictures</title>
 
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/gallery.css">
   <link rel="stylesheet" href="css/pages.css">
 
   <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
 
   <!-- Auth -->
   <script type="module" src="js/firebase-init.js"></script>
@@ -23,18 +24,29 @@
   <script src="js/ticker.js" defer></script>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <header>
-        <div class="titleblock">
-          <h1>Pictures</h1>
-          <p class="subhead hint">Memories with friends — open any photo to view.</p>
-        </div>
-        <!-- Container for nav.js injection -->
+  <!-- Ambient particles -->
+  <div class="page-particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <main class="wrap page-fullbleed">
+    <article class="card page-card">
+
+      <!-- Page Header -->
+      <header class="page-header gallery-accent">
+        <a href="index.html" class="titleblock title-link">
+          <h1>📸 Pictures</h1>
+          <p class="subhead">Memories with friends — open any photo to view.</p>
+        </a>
         <div class="header-actions"></div>
       </header>
 
-      <!-- Neutral section label (no hosting mention) -->
+      <!-- Section label -->
       <div class="section-bar">Gallery</div>
 
       <div class="content">
@@ -44,12 +56,11 @@
 
         <!-- Lightbox -->
         <dialog id="lightbox">
-          <button id="closeLightbox" class="btn" aria-label="Close">✕</button>
           <div id="lightboxBody"></div>
+          <button id="closeLightbox" aria-label="Close">&#x2715;</button>
         </dialog>
       </div>
 
-      <!-- ticker.js will render the rotating news ticker here -->
       <footer>
         <div class="ticker">
           <div class="ticker-viewport">

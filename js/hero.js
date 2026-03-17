@@ -15,10 +15,10 @@ const LANDING_IMAGE = driveThumb("1cro5d-42a0oTunMcvBKcfgVsey_n-cQv", 1600);
 function showStaticHero() {
   img.loading = "eager";
   img.decoding = "async";
+  img.onload = () => img.classList.add('loaded');
   img.src = LANDING_IMAGE;
   img.removeAttribute("srcset");
   img.alt = "Pool Party";
-  // hide the little caption chip completely
   if (cap) cap.style.display = "none";
 }
 
@@ -32,6 +32,7 @@ async function showRandomHero() {
     const pick = list[Math.floor(Math.random() * list.length)];
     img.loading = "eager";
     img.decoding = "async";
+    img.onload = () => img.classList.add('loaded');
     img.src = driveThumb(pick.id, 1600);
     img.srcset = [
       driveThumb(pick.id, 800)  + " 800w",

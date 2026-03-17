@@ -104,6 +104,7 @@ function openLightbox(item) {
   };
 
   body.appendChild(img);
+  document.body.classList.add("lightbox-open");
   dlg.showModal();
 
   // Close handlers
@@ -111,12 +112,18 @@ function openLightbox(item) {
   function close() {
     dlg.close();
     body.innerHTML = "";
+    document.body.classList.remove("lightbox-open");
     dlg.removeEventListener("keydown", onEsc);
+    dlg.removeEventListener("click", onBackdrop);
     closeBtn.onclick = null;
   }
   function onEsc(e) {
     if (e.key === "Escape") close();
   }
+  function onBackdrop(e) {
+    if (e.target === dlg) close();
+  }
   closeBtn.onclick = close;
   dlg.addEventListener("keydown", onEsc);
+  dlg.addEventListener("click", onBackdrop);
 }
