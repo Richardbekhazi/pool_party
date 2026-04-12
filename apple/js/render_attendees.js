@@ -18,14 +18,13 @@ async function renderTable() {
         <td class="idx">${r.id ?? ""}</td>
         <td class="name">${r.name ?? ""}</td>
         <td class="fee">${feeBadge(r.fee ?? "")}</td>
-        <td class="meal">${typeBadge(r.type ?? "")}</td>
-        <td class="phone"><a href="tel:+${phoneDigits(r.phone)}">${r.phone ?? ""}</a></td>`;
+        <td class="meal">${typeBadge(r.type ?? "")}</td>`;
       frag.appendChild(tr);
     });
     tbody.replaceChildren(frag);
   } catch (err) {
     console.error(err);
-    tbody.innerHTML = `<tr><td colspan="5" style="color:#fca5a5">Could not load attendees (see console).</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="4" style="color:#fca5a5">Could not load attendees (see console).</td></tr>`;
   }
 }
 document.addEventListener("DOMContentLoaded", renderTable);
