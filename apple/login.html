@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Farewell - Login</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/login.css">
+  <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/nav-auth.js"></script>
+  <script type="module" src="js/guard.js"></script>
+  <script src="js/ticker.js" defer></script>
+  <script type="module" src="js/login.js"></script>
+</head>
+<body>
+  <!-- Ambient particles -->
+  <div class="page-particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <main class="wrap page-fullbleed">
+    <article class="card page-card">
+
+      <!-- Page Header -->
+      <header class="page-header login-accent">
+        <a href="index.html" class="titleblock title-link">
+          <h1>🔐 Login</h1>
+          <p class="subhead">Enter the passcode to continue.</p>
+        </a>
+        <div class="header-actions"></div>
+      </header>
+
+      <div class="content">
+        <div class="login-body">
+          <!-- PIN Gate -->
+          <div id="pinGate">
+            <p class="login-subtext">Enter the 4-digit passcode</p>
+            <div class="pin-grid">
+              <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" autocomplete="off">
+              <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" autocomplete="off">
+              <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" autocomplete="off">
+              <input class="pin-cell" type="password" inputmode="numeric" maxlength="1" autocomplete="off">
+            </div>
+            <p id="gateMsg" class="gate-msg"></p>
+          </div>
+
+          <!-- Google Sign-in (hidden until PIN passes) -->
+          <button id="googleSignIn" class="login-btn" style="display:none">
+            Continue with Google
+          </button>
+          <p class="login-subtext" style="display:none">Sign in to access the event pages.</p>
+        </div>
+      </div>
+
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <div class="pass">
+                <span class="ticker-item">Apple Farewell</span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">Enter passcode to continue</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   nav.className = "header-nav";
   nav.setAttribute("aria-label", "Site navigation");
   nav.innerHTML = `
+    <a class="btn" href="../index.html" title="Back to Events Hub">⬅ Hub</a>
     <a class="btn ${isHome ? "btn-current" : ""}" href="index.html">Home</a>
     <a class="btn ${isMoney ? "btn-current" : ""}" href="money.html">Money</a>
     <a class="btn ${isPictures ? "btn-current" : ""}" href="pictures.html">Pictures</a>

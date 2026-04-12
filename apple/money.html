@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Farewell - Money</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/nav-auth.js"></script>
+  <script type="module" src="js/guard.js"></script>
+  <script src="js/render_attendees.js" defer></script>
+  <script src="js/sortable.js" defer></script>
+  <script src="js/ticker.js" defer></script>
+  <script src="js/stats.js" defer></script>
+</head>
+<body>
+  <!-- Ambient particles -->
+  <div class="page-particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <main class="wrap page-fullbleed">
+    <article class="card page-card">
+
+      <!-- Page Header -->
+      <header class="page-header money-accent">
+        <a href="index.html" class="titleblock title-link">
+          <h1>💸 Money</h1>
+          <p class="subhead">$30 per adult, $15 per kid</p>
+        </a>
+        <div class="header-actions"></div>
+      </header>
+
+      <div class="content">
+        <!-- Stats Dashboard -->
+        <section class="stats-overview">
+          <div class="stat-card">
+            <span class="stat-label">Total Collected</span>
+            <span class="stat-value" id="statTotal">$0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Confirmed Guests</span>
+            <span class="stat-value" id="statCount">0</span>
+          </div>
+        </section>
+
+        <section class="table-wrap">
+          <table aria-label="Guest list" id="contacts-table">
+            <thead>
+              <tr>
+                <th class="idx sortable" data-type="number" aria-sort="none">#</th>
+                <th class="sortable" data-type="text" aria-sort="none">Name</th>
+                <th class="sortable" data-type="money" aria-sort="none">Fee</th>
+                <th class="sortable" data-type="text" aria-sort="none">Type</th>
+                <th class="sortable" data-type="phone" aria-sort="none">Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Skeleton Loading -->
+              <tr class="skeleton-row">
+                <td class="idx"><div class="sk-blob"></div></td>
+                <td><div class="sk-line long"></div></td>
+                <td><div class="sk-line short"></div></td>
+                <td><div class="sk-line medium"></div></td>
+                <td><div class="sk-line medium"></div></td>
+              </tr>
+              <tr class="skeleton-row">
+                <td class="idx"><div class="sk-blob"></div></td>
+                <td><div class="sk-line long"></div></td>
+                <td><div class="sk-line short"></div></td>
+                <td><div class="sk-line medium"></div></td>
+                <td><div class="sk-line medium"></div></td>
+              </tr>
+              <tr class="skeleton-row">
+                <td class="idx"><div class="sk-blob"></div></td>
+                <td><div class="sk-line long"></div></td>
+                <td><div class="sk-line short"></div></td>
+                <td><div class="sk-line medium"></div></td>
+                <td><div class="sk-line medium"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <div class="pass">
+                <span class="ticker-item">Apple Farewell - Payments</span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">$30/adult, $15/kid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

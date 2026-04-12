@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Farewell - Pictures</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/nav-auth.js"></script>
+  <script type="module" src="js/guard.js"></script>
+  <script src="js/apple-gallery.js" defer></script>
+  <script src="js/ticker.js" defer></script>
+</head>
+<body>
+  <!-- Ambient particles -->
+  <div class="page-particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <main class="wrap page-fullbleed">
+    <article class="card page-card">
+
+      <!-- Page Header -->
+      <header class="page-header gallery-accent">
+        <a href="index.html" class="titleblock title-link">
+          <h1>📸 Pictures</h1>
+          <p class="subhead">Memories with Apple. Click any photo to view.</p>
+        </a>
+        <div class="header-actions"></div>
+      </header>
+
+      <!-- Section label -->
+      <div class="section-bar">Gallery</div>
+
+      <div class="content">
+        <section id="gallery" class="gallery-grid" aria-live="polite">
+          <!-- JS injects images here -->
+        </section>
+
+        <!-- Lightbox -->
+        <dialog id="lightbox">
+          <div id="lightboxBody"></div>
+          <button id="closeLightbox" aria-label="Close">&#x2715;</button>
+        </dialog>
+      </div>
+
+      <footer>
+        <div class="ticker">
+          <div class="ticker-viewport">
+            <div class="ticker-track">
+              <div class="pass">
+                <span class="ticker-item">Apple Farewell Gallery</span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">Click any photo to enlarge</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
