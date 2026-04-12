@@ -17,16 +17,20 @@ document.addEventListener("DOMContentLoaded", function () {
         card.className = "card-item";
 
         var img = document.createElement("img");
+        img.className = "card-thumb";
         img.src = pic.src;
         img.alt = pic.title;
         img.loading = "lazy";
 
+        var meta = document.createElement("div");
+        meta.className = "card-meta";
         var badge = document.createElement("span");
-        badge.className = "card-badge";
+        badge.className = "badge view";
         badge.textContent = "View";
+        meta.appendChild(badge);
 
         card.appendChild(img);
-        card.appendChild(badge);
+        card.appendChild(meta);
         card.addEventListener("click", function () {
           openLightbox(pic);
         });
