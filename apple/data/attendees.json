@@ -1,5 +1,8 @@
 [
-  {"id": 1, "name": "Apple", "fee": "HOST", "type": "Adult", "phone": ""},
-  {"id": 2, "name": "", "fee": "$-", "type": "Adult", "phone": ""},
-  {"id": 3, "name": "", "fee": "$-", "type": "Adult", "phone": ""}
+  {"id": 1, "name": "Apple Grace Calma", "fee": "HOST", "type": "Adult", "phone": ""},
+  {"id": 2, "name": "Chelsea", "fee": "$30", "type": "Adult", "phone": ""},
+  {"id": 3, "name": "Stephanie Bekhazi", "fee": "$30", "type": "Adult", "phone": ""},
+  {"id": 4, "name": "Richard Bekhazi", "fee": "$30", "type": "Adult", "phone": ""},
+  {"id": 5, "name": "Gwendolyn Perez", "fee": "$30", "type": "Adult", "phone": ""},
+  {"id": 6, "name": "Mouhamad Al Hachan", "fee": "$30", "type": "Adult", "phone": ""}
 ]
