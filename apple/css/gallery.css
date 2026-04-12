@@ -67,8 +67,9 @@
 
 .card-thumb {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: center 60%;
   display: block;
   transition: transform 0.4s ease;
   filter: brightness(0.92) saturate(1.05);
