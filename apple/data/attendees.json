@@ -25,5 +25,6 @@
   {"id": 24, "name": "Gwendolyn Perez", "fee": "$30", "type": "Adult"},
   {"id": 25, "name": "Mouhamad Al Hachan", "fee": "$30", "type": "Adult"},
   {"id": 26, "name": "Tia", "fee": "$30", "type": "Adult"},
-  {"id": 27, "name": "Othman", "fee": "$30", "type": "Adult"}
+  {"id": 27, "name": "Othman", "fee": "$30", "type": "Adult"},
+  {"id": 28, "name": "Farah Barakat", "fee": "$30", "type": "Adult"}
 ]
